@@ -7,7 +7,6 @@ Note: this is a fork of [skx's action](https://github.com/skx/github-action-publ
 
 This repository contains a simple GitHub Action implementation, which allows you to attach binaries to a new release.
 
-There are two steps to using this action:
 
 * Create the file `.github/main.workflow` in your repository.
   * This is where you enable the action, and specify the files to add to your release.
@@ -27,7 +26,7 @@ workflow "Handle Release" {
 
 # Run the magic
 action "Execute" {
-  uses = "skx/github-action-publish-binaries@master"
+  uses = "judge2020/github-action-publish-binaries@master"
   args = "puppet-summary-*"
   secrets = ["GITHUB_TOKEN"]
 }
