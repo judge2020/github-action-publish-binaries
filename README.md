@@ -1,26 +1,16 @@
 # GitHub Action for Uploading Release Artifacts
 
+
+Note: this is a fork of [skx's action](https://github.com/skx/github-action-publish-binaries) that doesn't run the build step on its own. This fork is for when GitHub actions is set up to run the build as one action, then have this run after that.
+
+---
+
 This repository contains a simple GitHub Action implementation, which allows you to attach binaries to a new release.
 
 There are two steps to using this action:
 
-* Writing a script to generate your binary/binaries.
-  * This must be project specific.  A C-project might just run `make`.
-  * A golang-based project might run `go build ..` multiple times for different architectures.
 * Create the file `.github/main.workflow` in your repository.
   * This is where you enable the action, and specify the files to add to your release.
-
-
-## Enabling
-
-There are two steps to enable this action:
-
-* Create the file `.github/main.workflow` in your repository.
-  * This is where you enable the action, and specify when it will run.
-* Create the shell-script `.github/build` in your repository.
-  * This is the script which will be invoked to run your build.
-  * It should install any dependencies, and produce the binaries.
-    * The container is Debian-derived so use `apt-get` as appropriate, you'll find the latest version of `go` is pre-installed as I use that the most.
 
 
 ## Sample Configuration
@@ -43,7 +33,7 @@ action "Execute" {
 }
 ```
 
-We assume that the `.github/build` script generated them.  For example a
+We assume that a previous action generated the file(s). For example a
 go-based project might create files like this using cross-compilation:
 
 * `puppet-summary-linux-i386`
